@@ -17,7 +17,7 @@ import java.util.List;
  * @author Gael
  */
 public interface IDatosPersistencia {
-    public boolean registrarUsuario(Usuario usuario);
+    public Usuario registrarUsuario(Usuario usuario);
     public void editarPerfilUsuario(Usuario usuario);
     public Usuario consultarUsuario(Long id);
     public void registrarPublicacion(Publicacion publicacion);

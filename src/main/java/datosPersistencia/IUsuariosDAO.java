@@ -12,7 +12,8 @@ import dominio.Usuario;
  * @author Gael
  */
 public interface IUsuariosDAO {
-    public boolean registrar(Usuario usuario);
+    public Usuario registrar(Usuario usuario);
     public Usuario consultarUsuario(Long idUsuario);
     public void editar(Usuario usuario);
+    public Usuario consultarUsuario(String correo);
 }

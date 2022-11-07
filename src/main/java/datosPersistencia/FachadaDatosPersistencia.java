@@ -35,9 +35,8 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     
  
     @Override
-    public boolean registrarUsuario(Usuario usuario) {
-       boolean respuesta = usuariosDAO.registrar(usuario);
-       return respuesta;
+    public Usuario registrarUsuario(Usuario usuario) {
+       return usuariosDAO.registrar(usuario);
     }
 
     @Override

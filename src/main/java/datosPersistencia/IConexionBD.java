@@ -5,7 +5,8 @@
  */
 package datosPersistencia;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
+//import javax.persistence.EntityManager;
 
 /**
  *
