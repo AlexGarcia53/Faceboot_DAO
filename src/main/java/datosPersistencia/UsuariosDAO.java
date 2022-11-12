@@ -6,7 +6,8 @@
 package datosPersistencia;
 
 import dominio.Usuario;
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.*;
+
 
 /**
  *
@@ -52,12 +53,13 @@ public class UsuariosDAO implements IUsuariosDAO {
     public Usuario consultarUsuario(String correo) {
         try {
             EntityManager em = this.conexion.crearConexion();
-            return em.find(Usuario.class, correo);
+            String jpqlQuery = "FROM Usuario WHERE email = '"+correo+"'";
+            TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
+            return (Usuario) query.getSingleResult();
         } catch (Exception ex) {
             System.err.println("No se pudo buscar al usuario con email: " + correo);
             ex.printStackTrace();
             return null;
         }
-    }
-    
+    } 
 }

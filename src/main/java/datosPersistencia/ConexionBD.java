@@ -8,6 +8,7 @@ package datosPersistencia;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+
 //import javax.persistence.EntityManager;
 //import javax.persistence.EntityManagerFactory;
 //import javax.persistence.Persistence;
@@ -21,7 +22,7 @@ public class ConexionBD implements IConexionBD {
 
     @Override
     public EntityManager crearConexion() throws IllegalStateException {
-        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("FaceBoot_DAOPU");
+        EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("FaceBoot_DominioPU");
         EntityManager em = emFactory.createEntityManager();
         return em;
     }
