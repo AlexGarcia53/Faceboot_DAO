@@ -45,8 +45,8 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     }
 
     @Override
-    public Usuario consultarUsuario(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario consultarUsuario(Usuario usuario) {
+        return usuariosDAO.consultarUsuarioRegistrado(usuario.getEmail(), usuario.getContraseña());
     }
 
     @Override

@@ -16,4 +16,5 @@ public interface IUsuariosDAO {
     public Usuario consultarUsuario(Long idUsuario);
     public void editar(Usuario usuario);
     public Usuario consultarUsuario(String correo);
+    public Usuario consultarUsuarioRegistrado(String correo, String contrasenia);
 }

@@ -19,7 +19,7 @@ import java.util.List;
 public interface IDatosPersistencia {
     public Usuario registrarUsuario(Usuario usuario);
     public void editarPerfilUsuario(Usuario usuario);
-    public Usuario consultarUsuario(Long id);
+    public Usuario consultarUsuario(Usuario usuario);
     public void registrarPublicacion(Publicacion publicacion);
     public void eliminarPublicacion(Long idPublicacion);
     public void editarPublicacion(Publicacion publicacion);

@@ -6,6 +6,8 @@
 package datosPersistencia;
 
 import dominio.Usuario;
+import excepciones.ErrorBusquedaUsuarioException;
+import excepciones.ErrorGuardarUsuarioException;
 import jakarta.persistence.*;
 
 
@@ -33,9 +35,7 @@ public class UsuariosDAO implements IUsuariosDAO {
             em.getTransaction().commit();
             return this.consultarUsuario(usuario.getEmail());
         } catch (Exception ex) {
-            System.out.println("No se pudo agregar al usuario");
-            ex.printStackTrace();
-            return null;
+            throw new ErrorGuardarUsuarioException("No se pudo agregar al usuario");
         }
     }
 
@@ -57,9 +57,19 @@ public class UsuariosDAO implements IUsuariosDAO {
             TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
             return (Usuario) query.getSingleResult();
         } catch (Exception ex) {
-            System.err.println("No se pudo buscar al usuario con email: " + correo);
-            ex.printStackTrace();
-            return null;
+            throw new ErrorBusquedaUsuarioException("No se pudo buscar al usuario con email: " + correo);
         }
     } 
+
+    @Override
+    public Usuario consultarUsuarioRegistrado(String correo, String contrasenia) {
+        try {
+            EntityManager em = this.conexion.crearConexion();
+            String jpqlQuery = "FROM Usuario WHERE email = '"+correo+"' AND contraseña = '"+contrasenia+"'";
+            TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
+            return (Usuario) query.getSingleResult();
+        } catch (Exception ex) {
+            throw new ErrorBusquedaUsuarioException("No se encontrar al usuario");
+        }
+    }
 }
