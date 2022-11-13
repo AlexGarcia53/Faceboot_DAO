@@ -65,7 +65,7 @@ public class UsuariosDAO implements IUsuariosDAO {
     public Usuario consultarUsuarioRegistrado(String correo, String contrasenia) {
         try {
             EntityManager em = this.conexion.crearConexion();
-            String jpqlQuery = "FROM Usuario WHERE email = '"+correo+"' AND contraseña = '"+contrasenia+"'";
+            String jpqlQuery = "FROM Usuario WHERE email = '"+correo+"' AND contrasenia = '"+contrasenia+"'";
             TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
             return (Usuario) query.getSingleResult();
         } catch (Exception ex) {

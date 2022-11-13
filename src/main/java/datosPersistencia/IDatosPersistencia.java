@@ -20,9 +20,10 @@ public interface IDatosPersistencia {
     public Usuario registrarUsuario(Usuario usuario);
     public void editarPerfilUsuario(Usuario usuario);
     public Usuario consultarUsuario(Usuario usuario);
-    public void registrarPublicacion(Publicacion publicacion);
+    public Publicacion registrarPublicacion(Publicacion publicacion);
     public void eliminarPublicacion(Long idPublicacion);
     public void editarPublicacion(Publicacion publicacion);
+    public Publicacion consultarPublicacion(Publicacion publicacion);
     public Publicacion consultarPublicacionHashtag(Hashtag hashtag);
     public void registrarHashtag(Hashtag hashtag);
     public Hashtag consultarHashtag(Long idHashtag);

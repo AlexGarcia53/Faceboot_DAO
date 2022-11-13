@@ -50,8 +50,8 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     }
 
     @Override
-    public void registrarPublicacion(Publicacion publicacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Publicacion registrarPublicacion(Publicacion publicacion) {
+        return publicacionesDAO.registrar(publicacion);
     }
 
     @Override
@@ -63,7 +63,12 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     public void editarPublicacion(Publicacion publicacion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
+    @Override
+    public Publicacion consultarPublicacion(Publicacion publicacion) {
+        return publicacionesDAO.consultarPublicacion(publicacion.getId());
+    }
+    
     @Override
     public Publicacion consultarPublicacionHashtag(Hashtag hashtag) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
