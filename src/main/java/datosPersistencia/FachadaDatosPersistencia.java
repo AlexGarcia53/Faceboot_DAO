@@ -38,6 +38,11 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     public Usuario registrarUsuario(Usuario usuario) {
        return usuariosDAO.registrar(usuario);
     }
+    
+    @Override
+    public Usuario registrarUsuarioFacebook(Usuario usuario){
+       return usuariosDAO.registrarFacebook(usuario);
+    }
 
     @Override
     public void editarPerfilUsuario(Usuario usuario) {
@@ -46,7 +51,12 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
 
     @Override
     public Usuario consultarUsuario(Usuario usuario) {
-        return usuariosDAO.consultarUsuarioRegistrado(usuario.getEmail(), usuario.getContraseña());
+        return usuariosDAO.consultarUsuarioRegistrado(usuario.getEmail(), usuario.getContrasenia());
+    }
+    
+    @Override
+    public Usuario consultarUsuarioPorAToken(Usuario usuario) {
+        return usuariosDAO.consultarUsuarioPorAToken(usuario.getAtoken());
     }
 
     @Override

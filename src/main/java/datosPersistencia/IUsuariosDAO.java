@@ -13,7 +13,9 @@ import dominio.Usuario;
  */
 public interface IUsuariosDAO {
     public Usuario registrar(Usuario usuario);
+    public Usuario registrarFacebook(Usuario usuario);
     public Usuario consultarUsuario(Long idUsuario);
+    public Usuario consultarUsuarioPorAToken(String atoken);
     public void editar(Usuario usuario);
     public Usuario consultarUsuario(String correo);
     public Usuario consultarUsuarioRegistrado(String correo, String contrasenia);

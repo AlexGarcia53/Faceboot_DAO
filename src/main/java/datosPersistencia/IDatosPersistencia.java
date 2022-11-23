@@ -18,8 +18,10 @@ import java.util.List;
  */
 public interface IDatosPersistencia {
     public Usuario registrarUsuario(Usuario usuario);
+    public Usuario registrarUsuarioFacebook(Usuario usuario);
     public void editarPerfilUsuario(Usuario usuario);
     public Usuario consultarUsuario(Usuario usuario);
+    public Usuario consultarUsuarioPorAToken(Usuario usuario);
     public Publicacion registrarPublicacion(Publicacion publicacion);
     public void eliminarPublicacion(Long idPublicacion);
     public void editarPublicacion(Publicacion publicacion);

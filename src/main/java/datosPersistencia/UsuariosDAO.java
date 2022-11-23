@@ -38,6 +38,20 @@ public class UsuariosDAO implements IUsuariosDAO {
             throw new ErrorGuardarUsuarioException("No se pudo agregar al usuario");
         }
     }
+    
+    @Override
+    public Usuario registrarFacebook(Usuario usuario){
+        try {
+            EntityManager em = this.conexion.crearConexion();
+            System.out.println("prueba");
+            em.getTransaction().begin();
+            em.persist(usuario);
+            em.getTransaction().commit();
+            return this.consultarUsuario(usuario.getEmail());
+        } catch (Exception ex) {
+            throw new ErrorGuardarUsuarioException("No se pudo agregar al usuario");
+        }
+    }
 
     @Override
     public Usuario consultarUsuario(Long idUsuario) {
@@ -60,7 +74,25 @@ public class UsuariosDAO implements IUsuariosDAO {
             throw new ErrorBusquedaUsuarioException("No se pudo buscar al usuario con email: " + correo);
         }
     } 
+    
+    @Override
+    public Usuario consultarUsuarioPorAToken(String atoken) {
+        try {
+            EntityManager em = this.conexion.crearConexion();
+            String jpqlQuery = "FROM Usuario WHERE token = '"+atoken+"'";
+            TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
+            try{
+                return (Usuario) query.getSingleResult();
+            } catch(NoResultException ex) {
+                return null;
+            }
 
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            throw new ErrorBusquedaUsuarioException("No se pudo buscar al usuario con access token: " + atoken);
+        }
+    } 
+    
     @Override
     public Usuario consultarUsuarioRegistrado(String correo, String contrasenia) {
         try {
@@ -69,7 +101,7 @@ public class UsuariosDAO implements IUsuariosDAO {
             TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
             return (Usuario) query.getSingleResult();
         } catch (Exception ex) {
-            throw new ErrorBusquedaUsuarioException("No se encontrar al usuario");
+            throw new ErrorBusquedaUsuarioException("No se pudo encontrar al usuario");
         }
     }
 }
