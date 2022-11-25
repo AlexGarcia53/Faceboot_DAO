@@ -74,24 +74,24 @@ public class UsuariosDAO implements IUsuariosDAO {
             throw new ErrorBusquedaUsuarioException("No se pudo buscar al usuario con email: " + correo);
         }
     } 
-    
+  
     @Override
-    public Usuario consultarUsuarioPorAToken(String atoken) {
+    public Usuario consultarUsuarioPorAToken(String token) {
         try {
-            EntityManager em = this.conexion.crearConexion();
-            String jpqlQuery = "FROM Usuario WHERE token = '"+atoken+"'";
-            TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
-            try{
-                return (Usuario) query.getSingleResult();
-            } catch(NoResultException ex) {
-                return null;
-            }
 
-        } catch (Exception ex) {
+            EntityManager em = this.conexion.crearConexion();
+            String jpqlQuery = "FROM Usuario WHERE token = '"+token+"'";
+            TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
+            if(query.getResultList().isEmpty()){
+                return null;
+            } else {
+                 return (Usuario) query.getSingleResult();
+            }
+        } catch (NoResultException ex) {
             System.out.println(ex.getMessage());
-            throw new ErrorBusquedaUsuarioException("No se pudo buscar al usuario con access token: " + atoken);
+            throw new ErrorBusquedaUsuarioException("No se pudo buscar al usuario con access token: " + token);
         }
-    } 
+    }
     
     @Override
     public Usuario consultarUsuarioRegistrado(String correo, String contrasenia) {

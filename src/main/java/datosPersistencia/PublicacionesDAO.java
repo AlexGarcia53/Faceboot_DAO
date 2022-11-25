@@ -42,10 +42,11 @@ public class PublicacionesDAO implements IPublicacionesDAO {
     @Override
     public Publicacion consultarPublicacion(Long id) {
         try {
+            System.out.println("Entro a consultar, id:"+id);
             EntityManager em = this.conexion.crearConexion();
-            String jpqlQuery = "FROM Publicacion WHERE id = '"+id+"'";
-            TypedQuery query = em.createQuery(jpqlQuery, Publicacion.class);
-            return (Publicacion) query.getSingleResult();
+            
+            return em.find(Publicacion.class, id);
+            
         } catch (Exception ex) {
             throw new ErrorGuardarPublicacionException("No se pudo buscar la publicación: " + id);
         }
