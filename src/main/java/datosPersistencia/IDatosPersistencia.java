@@ -32,6 +32,7 @@ public interface IDatosPersistencia {
     public void registrarComentario(Comentario comentario);
     public void eliminarComentario(Long idComentario);
     public List<Comentario> consultarComentario(Long idPublicacion);
+    public List<Publicacion> consultarPublicaciones();
     public void enviarMensaje(Mensaje mensaje);
     public Mensaje consultarMensaje(Long idNotificacion);
      

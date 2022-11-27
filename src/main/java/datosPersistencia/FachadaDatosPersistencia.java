@@ -118,5 +118,10 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     public Mensaje consultarMensaje(Long idNotificacion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public List<Publicacion> consultarPublicaciones() {
+        return publicacionesDAO.consultarPublicaciones();
+    }
     
 }

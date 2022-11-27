@@ -7,6 +7,7 @@ package datosPersistencia;
 
 import dominio.Hashtag;
 import dominio.Publicacion;
+import java.util.List;
 
 /**
  *
@@ -16,6 +17,7 @@ public interface IPublicacionesDAO {
     public Publicacion registrar(Publicacion publicacion);
     public Publicacion consultarPublicacion(Long id);
     public Publicacion consultarPorHashtag(Hashtag hashtag);
+    public List<Publicacion> consultarPublicaciones();
     public void eliminar(Long idPublicacion);
     
 }
