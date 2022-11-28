@@ -13,7 +13,8 @@ import java.util.List;
  * @author Gael
  */
 public interface IComentariosDAO {
-    public void registrar(Comentario comentario);
+    public Comentario registrar(Comentario comentario);
+    public Comentario editar(Comentario comentario);
     public List<Comentario> consultarComentarios(Long idPublicacion);
-    public void eliminar(Long idComentario);
+    public Comentario eliminar(Comentario comentario);
 }

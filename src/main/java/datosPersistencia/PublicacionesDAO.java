@@ -9,6 +9,7 @@ import dominio.Hashtag;
 import dominio.Publicacion;
 import excepciones.ErrorBusquedaPublicacionesException;
 import excepciones.ErrorBusquedaUsuarioException;
+import excepciones.ErrorEliminarPublicacionException;
 import excepciones.ErrorGuardarPublicacionException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
@@ -31,7 +32,6 @@ public class PublicacionesDAO implements IPublicacionesDAO {
     @Override
     public Publicacion registrar(Publicacion publicacion) {
         try {
-
             System.out.println(publicacion.toString());
             EntityManager em = this.conexion.crearConexion();
             System.out.println("prueba");
@@ -63,8 +63,18 @@ public class PublicacionesDAO implements IPublicacionesDAO {
     }
 
     @Override
-    public void eliminar(Long idPublicacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Publicacion eliminar(Publicacion publicacion) {
+        try {
+            System.out.println("Llegó a eliminar publicación");
+            EntityManager em = this.conexion.crearConexion();
+            em.getTransaction().begin();
+            Publicacion instancia= em.merge(publicacion);
+            em.remove(instancia);
+            em.getTransaction().commit();
+            return instancia;
+        } catch (Exception ex) {
+            throw new ErrorEliminarPublicacionException("No se pudo eliminar la publicación,"+ex.getClass()+", "+ex.getMessage());
+        }
     }
 
     @Override
@@ -73,13 +83,26 @@ public class PublicacionesDAO implements IPublicacionesDAO {
             System.out.println("Entro a consultar publicaciones");
             EntityManager em = this.conexion.crearConexion();
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT p FROM Publicacion p");
+            Query query = em.createQuery("SELECT p FROM Publicacion p"); //ORDER BY p.id DESC
 
             List<Publicacion> publicaciones = new ArrayList<>();
             return publicaciones = query.getResultList();
 
         } catch (Exception ex) {
             throw new ErrorBusquedaPublicacionesException(ex.getClass()+", "+ex.getMessage());
+        }
+    }
+
+    @Override
+    public Publicacion editar(Publicacion publicacion) {
+        try {
+            EntityManager em = this.conexion.crearConexion();
+            em.getTransaction().begin();
+            em.merge(publicacion);
+            em.getTransaction().commit();
+            return this.consultarPublicacion(publicacion.getId());
+        } catch (Exception ex) {
+            throw new ErrorGuardarPublicacionException("No se pudo editar la publicación,"+ex.getClass()+", "+ex.getMessage());
         }
     }
     

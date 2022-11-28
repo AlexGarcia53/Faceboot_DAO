@@ -6,6 +6,9 @@
 package datosPersistencia;
 
 import dominio.Comentario;
+import excepciones.ErrorEditarComentarioException;
+import excepciones.ErrorGuardarComentarioException;
+import jakarta.persistence.EntityManager;
 import java.util.List;
 
 /**
@@ -21,8 +24,28 @@ public class ComentariosDAO implements IComentariosDAO {
     }
     
     @Override
-    public void registrar(Comentario comentario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Comentario registrar(Comentario comentario) {
+        try {
+            System.out.println("Llegó a registar comentario");
+            EntityManager em = this.conexion.crearConexion();
+            em.getTransaction().begin();
+            em.persist(comentario);
+            em.getTransaction().commit();
+            return this.consultarComentario(comentario.getId());
+        } catch (Exception ex) {
+            throw new ErrorGuardarComentarioException("No se pudo registrar el comentario: "+ex.getClass()+", "+ex.getMessage());
+        }
+    }
+    
+    public Comentario consultarComentario(Long id){
+        try {
+            EntityManager em = this.conexion.crearConexion();
+            
+            return em.find(Comentario.class, id);
+            
+        } catch (Exception ex) {
+            throw new ErrorGuardarComentarioException("No se pudo encontrar el comentario");
+        }
     }
 
     @Override
@@ -31,8 +54,21 @@ public class ComentariosDAO implements IComentariosDAO {
     }
 
     @Override
-    public void eliminar(Long idComentario) {
+    public Comentario eliminar(Comentario comentario) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Comentario editar(Comentario comentario) {
+        try {
+            EntityManager em = this.conexion.crearConexion();
+            em.getTransaction().begin();
+            em.merge(comentario);
+            em.getTransaction().commit();
+            return this.consultarComentario(comentario.getId());
+        } catch (Exception ex) {
+            throw new ErrorEditarComentarioException("No se pudo editar el comentario,"+ex.getClass()+", "+ex.getMessage());
+        }
     }
     
 }
