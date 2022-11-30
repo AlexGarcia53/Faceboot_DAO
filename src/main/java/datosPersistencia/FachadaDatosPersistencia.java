@@ -45,8 +45,8 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     }
 
     @Override
-    public void editarPerfilUsuario(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario editarPerfilUsuario(Usuario usuario) {
+        return usuariosDAO.editar(usuario);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
 
     @Override
     public Comentario eliminarComentario(Comentario comentario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return comentariosDAO.eliminar(comentario);
     }
     
     @Override

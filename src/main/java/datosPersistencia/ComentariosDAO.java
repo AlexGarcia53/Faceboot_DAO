@@ -7,8 +7,10 @@ package datosPersistencia;
 
 import dominio.Comentario;
 import excepciones.ErrorEditarComentarioException;
+import excepciones.ErrorEliminarComentarioException;
 import excepciones.ErrorGuardarComentarioException;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import java.util.List;
 
 /**
@@ -55,7 +57,19 @@ public class ComentariosDAO implements IComentariosDAO {
 
     @Override
     public Comentario eliminar(Comentario comentario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            System.out.println("Llegó a eliminar comentario");
+            EntityManager em = this.conexion.crearConexion();
+            em.getTransaction().begin();
+//            Comentario instancia= em.find(Comentario.class, comentario.getId());
+//            em.remove(instancia);
+            Comentario instancia= em.find(Comentario.class, comentario.getId());
+            em.createQuery("DELETE FROM Comentario WHERE id= :id").setParameter("id", instancia.getId()).executeUpdate();
+            em.getTransaction().commit();
+            return instancia;
+        } catch (Exception ex) {
+            throw new ErrorEliminarComentarioException("No se pudo eliminar el comentario,"+ex.getClass()+", "+ex.getMessage());
+        }
     }
 
     @Override

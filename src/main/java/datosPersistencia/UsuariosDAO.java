@@ -5,8 +5,10 @@
  */
 package datosPersistencia;
 
+import dominio.Publicacion;
 import dominio.Usuario;
 import excepciones.ErrorBusquedaUsuarioException;
+import excepciones.ErrorEditarUsuarioException;
 import excepciones.ErrorGuardarUsuarioException;
 import jakarta.persistence.*;
 
@@ -55,12 +57,25 @@ public class UsuariosDAO implements IUsuariosDAO {
 
     @Override
     public Usuario consultarUsuario(Long idUsuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+            EntityManager em = this.conexion.crearConexion();
+            return em.find(Usuario.class, idUsuario);
+        } catch(Exception e){
+            throw new ErrorBusquedaUsuarioException(e.getMessage());
+        }
     }
 
     @Override
-    public void editar(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Usuario editar(Usuario usuario) {
+        try{
+            EntityManager em = this.conexion.crearConexion();
+            em.getTransaction().begin();
+            em.merge(usuario);
+            em.getTransaction().commit();
+            return this.consultarUsuario(usuario.getId());
+        } catch (Exception e){
+            throw new ErrorEditarUsuarioException(e.getMessage());
+        }
     }
 
     @Override
