@@ -40,7 +40,7 @@ public class PublicacionesDAO implements IPublicacionesDAO {
             em.getTransaction().commit();
             return this.consultarPublicacion(publicacion.getId());
         } catch (Exception ex) {
-            throw new ErrorGuardarPublicacionException("No se pudo registrar la publicación");
+            throw new ErrorGuardarPublicacionException("No se pudo registrar la publicación"+ ex.getClass()+", "+ex.getMessage());
         }
     }
     

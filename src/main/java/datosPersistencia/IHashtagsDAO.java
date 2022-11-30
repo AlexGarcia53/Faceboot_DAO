@@ -12,6 +12,6 @@ import dominio.Hashtag;
  * @author Gael
  */
 public interface IHashtagsDAO {
-    public void registrar(Hashtag hashtag);
+    public Hashtag registrar(Hashtag hashtag);
     public Hashtag consultarHashtag(Long idHashtag);
 }

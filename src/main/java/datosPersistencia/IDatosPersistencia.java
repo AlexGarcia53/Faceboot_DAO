@@ -27,7 +27,7 @@ public interface IDatosPersistencia {
     public Publicacion editarPublicacion(Publicacion publicacion);
     public Publicacion consultarPublicacion(Publicacion publicacion);
     public Publicacion consultarPublicacionHashtag(Hashtag hashtag);
-    public void registrarHashtag(Hashtag hashtag);
+    public Hashtag registrarHashtag(Hashtag hashtag);
     public Hashtag consultarHashtag(Long idHashtag);
     public Comentario registrarComentario(Comentario comentario);
     public Comentario eliminarComentario(Comentario comentario);

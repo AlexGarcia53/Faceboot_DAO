@@ -85,8 +85,8 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     }
 
     @Override
-    public void registrarHashtag(Hashtag hashtag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Hashtag registrarHashtag(Hashtag hashtag) {
+        return hashtagsDAO.registrar(hashtag);
     }
 
     @Override
