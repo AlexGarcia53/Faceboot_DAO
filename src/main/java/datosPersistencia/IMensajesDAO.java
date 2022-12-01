@@ -12,6 +12,6 @@ import dominio.Mensaje;
  * @author Gael
  */
 public interface IMensajesDAO {
-     public void registrar(Mensaje mensaje);
+     public Mensaje registrar(Mensaje mensaje);
      public Mensaje consultar( Long idMensaje);
 }

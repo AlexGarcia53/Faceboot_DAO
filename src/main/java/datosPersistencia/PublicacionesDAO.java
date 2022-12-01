@@ -32,9 +32,7 @@ public class PublicacionesDAO implements IPublicacionesDAO {
     @Override
     public Publicacion registrar(Publicacion publicacion) {
         try {
-            System.out.println(publicacion.toString());
             EntityManager em = this.conexion.crearConexion();
-            System.out.println("prueba");
             em.getTransaction().begin();
             em.persist(publicacion);
             em.getTransaction().commit();

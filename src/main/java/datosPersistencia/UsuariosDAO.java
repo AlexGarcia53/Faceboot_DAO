@@ -119,4 +119,16 @@ public class UsuariosDAO implements IUsuariosDAO {
             throw new ErrorBusquedaUsuarioException("No se pudo encontrar al usuario");
         }
     }
+
+    @Override
+    public Usuario consultarUsuarioNombre(String nombre) {
+        try {
+            EntityManager em = this.conexion.crearConexion();
+            String jpqlQuery = "FROM Usuario WHERE usuario = '"+nombre+"'";
+            TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
+            return (Usuario) query.getSingleResult();
+        } catch (Exception ex) {
+            throw new ErrorBusquedaUsuarioException("No se pudo buscar al usuario: " + nombre);
+        }
+    }
 }

@@ -21,6 +21,7 @@ public interface IDatosPersistencia {
     public Usuario registrarUsuarioFacebook(Usuario usuario);
     public Usuario editarPerfilUsuario(Usuario usuario);
     public Usuario consultarUsuario(Usuario usuario);
+    public Usuario consultarUsuarioNombre(Usuario usuario);
     public Usuario consultarUsuarioPorAToken(Usuario usuario);
     public Publicacion registrarPublicacion(Publicacion publicacion);
     public Publicacion eliminarPublicacion(Publicacion publicacion);
@@ -34,7 +35,7 @@ public interface IDatosPersistencia {
     public Comentario editarComentario(Comentario comentario);
     public List<Comentario> consultarComentario(Long idPublicacion);
     public List<Publicacion> consultarPublicaciones();
-    public void enviarMensaje(Mensaje mensaje);
+    public Mensaje enviarMensaje(Mensaje mensaje);
     public Mensaje consultarMensaje(Long idNotificacion);
      
 }
