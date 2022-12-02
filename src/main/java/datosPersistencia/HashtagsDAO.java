@@ -5,6 +5,8 @@
  */
 package datosPersistencia;
 
+import interfaces.IConexionBD;
+import interfaces.IHashtagsDAO;
 import dominio.Hashtag;
 import dominio.Publicacion;
 import excepciones.ErrorConsultarHashtagException;
@@ -16,17 +18,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author Gael
+ * Clase que realiza todas las operaciones de base de datos para la entidad 
+ * de hashtag.
+ * 
+ * @author Equipo Broker.
  */
 public class HashtagsDAO implements IHashtagsDAO {
-
+    /**
+     * Atributo utilizado para crear una conexión.
+     */
     private IConexionBD conexion;
-
+    /**
+     * Constructor que inicializa el atributo de la clase.
+     * @param conexion conexión a base de datos.
+     */
     public HashtagsDAO(IConexionBD conexion) {
         this.conexion = conexion;
     }
-    
+    /**
+     * Método utilizado para registrar un hashtag.
+     * @param hashtag hashtag a registrar.
+     * @return hashtag registrado.
+     */
     @Override
     public Hashtag registrar(Hashtag hashtag) {
         try {
@@ -40,7 +53,11 @@ public class HashtagsDAO implements IHashtagsDAO {
             throw new ErrorGuardarHashtagException("No se pudo registrar el hashtag"+ ex.getClass()+", "+ex.getMessage());
         }
     }
-
+    /**
+     * Método utilizado para registrar un hashtag.
+     * @param idHashtag hashtag a registrar.
+     * @return hashtag registrado.
+     */
     @Override
     public Hashtag consultarHashtag(Long idHashtag) {
         try {
@@ -52,7 +69,11 @@ public class HashtagsDAO implements IHashtagsDAO {
             throw new ErrorConsultarHashtagException("No se pudo encontar el hashtag: " + idHashtag);
         }
     }
-
+    /**
+     * Método utilizado para consultar los hashtags por nombre.
+     * @param hashtag hashtag a consultar.
+     * @return hashtag consultado.
+     */
     @Override
     public List<Hashtag> consultarHashtagNombre(String hashtag) {
         try {

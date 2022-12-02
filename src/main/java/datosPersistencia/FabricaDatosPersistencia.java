@@ -5,14 +5,22 @@
  */
 package datosPersistencia;
 
+import interfaces.IDatosPersistencia;
+
 /**
- *
- * @author Gael
+ * Clase que crea una instancia de FachadaDatosPersistencia.
+ * 
+ * @author Equipo Broker.
  */
 public class FabricaDatosPersistencia {
-
+    /**
+     * Instancia de IDatosPersistencia.
+     */
     private static IDatosPersistencia datosPersistencia;
-
+    /**
+     * Método que devuelve una FachadaDatosPersistencia.
+     * @return FachadaDatosPersistencia.
+     */
     public static IDatosPersistencia crearFachadaDatos(){
         return new FachadaDatosPersistencia();
     }

@@ -5,6 +5,8 @@
  */
 package datosPersistencia;
 
+import interfaces.IComentariosDAO;
+import interfaces.IConexionBD;
 import dominio.Comentario;
 import excepciones.ErrorEditarComentarioException;
 import excepciones.ErrorEliminarComentarioException;
@@ -14,17 +16,28 @@ import jakarta.persistence.Query;
 import java.util.List;
 
 /**
- *
- * @author Gael
+ * Clase que realiza todas las operaciones de base de datos para la entidad 
+ * de comentario.
+ * 
+ * @author Equipo Broker.
  */
 public class ComentariosDAO implements IComentariosDAO {
-
+    /**
+     * Atributo utilizado para crear una conexión.
+     */
     private IConexionBD conexion;
-
+    /**
+     * Constructor que inicializa el atributo de la clase.
+     * @param conexion conexión a base de datos.
+     */
     public ComentariosDAO(IConexionBD conexion) {
         this.conexion = conexion;
     }
-    
+    /**
+     * Método utilizado para registrar un comentario.
+     * @param comentario comentario a registrar.
+     * @return comentario registrado.
+     */
     @Override
     public Comentario registrar(Comentario comentario) {
         try {
@@ -38,7 +51,11 @@ public class ComentariosDAO implements IComentariosDAO {
             throw new ErrorGuardarComentarioException("No se pudo registrar el comentario: "+ex.getClass()+", "+ex.getMessage());
         }
     }
-    
+    /**
+     * Método para consultar comentario.
+     * @param id ide del comentario.
+     * @return comentario consultado.
+     */
     public Comentario consultarComentario(Long id){
         try {
             EntityManager em = this.conexion.crearConexion();
@@ -55,6 +72,11 @@ public class ComentariosDAO implements IComentariosDAO {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Método utilizado para eliminar un comentario.
+     * @param comentario comentario a eliminar.
+     * @return comentario eliminado.
+     */
     @Override
     public Comentario eliminar(Comentario comentario) {
         try {
@@ -71,7 +93,11 @@ public class ComentariosDAO implements IComentariosDAO {
             throw new ErrorEliminarComentarioException("No se pudo eliminar el comentario,"+ex.getClass()+", "+ex.getMessage());
         }
     }
-
+    /**
+     * Método utilizado para editar un comentario.
+     * @param comentario comentario a editar.
+     * @return comentario editado.
+     */
     @Override
     public Comentario editar(Comentario comentario) {
         try {
