@@ -86,7 +86,7 @@ public class UsuariosDAO implements IUsuariosDAO {
             TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
             return (Usuario) query.getSingleResult();
         } catch (Exception ex) {
-            throw new ErrorBusquedaUsuarioException("No se pudo buscar al usuario con email: " + correo);
+            throw new ErrorBusquedaUsuarioException("No se pudo encontrar al usuario con email: " + correo);
         }
     } 
   
@@ -104,7 +104,7 @@ public class UsuariosDAO implements IUsuariosDAO {
             }
         } catch (NoResultException ex) {
             System.out.println(ex.getMessage());
-            throw new ErrorBusquedaUsuarioException("No se pudo buscar al usuario con access token: " + token);
+            throw new ErrorBusquedaUsuarioException("No se pudo encontrar al usuario con access token: " + token);
         }
     }
     
@@ -128,7 +128,7 @@ public class UsuariosDAO implements IUsuariosDAO {
             TypedQuery query = em.createQuery(jpqlQuery, Usuario.class);
             return (Usuario) query.getSingleResult();
         } catch (Exception ex) {
-            throw new ErrorBusquedaUsuarioException("No se pudo buscar al usuario: " + nombre);
+            throw new ErrorBusquedaUsuarioException("No se pudo encontrar al usuario: " + nombre);
         }
     }
 }

@@ -9,6 +9,7 @@ import dominio.Hashtag;
 import dominio.Publicacion;
 import excepciones.ErrorBusquedaPublicacionesException;
 import excepciones.ErrorBusquedaUsuarioException;
+import excepciones.ErrorConsultarPublicacionException;
 import excepciones.ErrorEliminarPublicacionException;
 import excepciones.ErrorGuardarPublicacionException;
 import jakarta.persistence.EntityManager;
@@ -51,7 +52,7 @@ public class PublicacionesDAO implements IPublicacionesDAO {
             return em.find(Publicacion.class, id);
             
         } catch (Exception ex) {
-            throw new ErrorGuardarPublicacionException("No se pudo buscar la publicación: " + id);
+            throw new ErrorConsultarPublicacionException("No se pudo buscar la publicación: " + id);
         }
     }
 

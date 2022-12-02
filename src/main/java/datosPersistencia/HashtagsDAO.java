@@ -10,6 +10,10 @@ import dominio.Publicacion;
 import excepciones.ErrorConsultarHashtagException;
 import excepciones.ErrorGuardarHashtagException;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -48,5 +52,18 @@ public class HashtagsDAO implements IHashtagsDAO {
             throw new ErrorConsultarHashtagException("No se pudo encontar el hashtag: " + idHashtag);
         }
     }
-    
+
+    @Override
+    public List<Hashtag> consultarHashtagNombre(String hashtag) {
+        try {
+            EntityManager em = this.conexion.crearConexion();
+            em.getTransaction().begin();
+            Query query = em.createQuery("SELECT h FROM Hashtag h WHERE h.nombre= :nombre").setParameter("nombre", hashtag); //ORDER BY p.id DESC
+
+            List<Hashtag> hashtags = new ArrayList<>();
+            return hashtags = query.getResultList();
+        } catch (Exception ex) {
+            throw new ErrorConsultarHashtagException("No se pudo encontar el hashtag: " + hashtag);
+        }
+    } 
 }

@@ -35,6 +35,7 @@ public interface IDatosPersistencia {
     public Comentario editarComentario(Comentario comentario);
     public List<Comentario> consultarComentario(Long idPublicacion);
     public List<Publicacion> consultarPublicaciones();
+    public List<Hashtag> consultarHashtagNombre(String hashtag);
     public Mensaje enviarMensaje(Mensaje mensaje);
     public Mensaje consultarMensaje(Long idNotificacion);
      

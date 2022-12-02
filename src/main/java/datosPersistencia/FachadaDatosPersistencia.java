@@ -133,5 +133,10 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     public Usuario consultarUsuarioNombre(Usuario usuario) {
         return usuariosDAO.consultarUsuarioNombre(usuario.getUsuario());
     }
+
+    @Override
+    public List<Hashtag> consultarHashtagNombre(String hashtag) {
+        return hashtagsDAO.consultarHashtagNombre(hashtag);
+    }
     
 }

@@ -6,6 +6,7 @@
 package datosPersistencia;
 
 import dominio.Hashtag;
+import java.util.List;
 
 /**
  *
@@ -14,4 +15,5 @@ import dominio.Hashtag;
 public interface IHashtagsDAO {
     public Hashtag registrar(Hashtag hashtag);
     public Hashtag consultarHashtag(Long idHashtag);
+    public List<Hashtag> consultarHashtagNombre(String hashtag);
 }
