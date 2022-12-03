@@ -139,15 +139,7 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     public Publicacion consultarPublicacion(Publicacion publicacion) {
         return publicacionesDAO.consultarPublicacion(publicacion.getId());
     }
-    /**
-     * Método utilizado para consultar una publicación por hashtag.
-     * @param hashtag hashtag a consultar.
-     * @return publicacion consultada.
-     */
-    @Override
-    public Publicacion consultarPublicacionHashtag(Hashtag hashtag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
     /**
      * Método utilizado para registrar un hashtag.
      * @param hashtag hashtag a registrar.
@@ -160,11 +152,11 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     /**
      * Método utilizada para consultar un hashtag.
      * @param idHashtag id del hashtag.
-     * @return 
+     * @return hashtag consultado.
      */
     @Override
     public Hashtag consultarHashtag(Long idHashtag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return hashtagsDAO.consultarHashtag(idHashtag);
     }
     /**
      * Método utilizado para registrar un comentario.
@@ -195,12 +187,12 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
     }
     /**
      * Método para consultar comentario.
-     * @param idPublicacion
-     * @return 
+     * @param idComentario id del comentario a consultar.
+     * @return comentario consultado
      */
     @Override
-    public List<Comentario> consultarComentario(Long idPublicacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Comentario consultarComentario(Long idComentario) {
+        return comentariosDAO.consultarComentario(idComentario);
     }
     /**
      * Método para enviar un mensaje.
@@ -218,7 +210,7 @@ public class FachadaDatosPersistencia implements IDatosPersistencia {
      */
     @Override
     public Mensaje consultarMensaje(Long idNotificacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return mensajesDAO.consultar(idNotificacion);
     }
     /**
      * Método utilizado para consultar publicaciones.

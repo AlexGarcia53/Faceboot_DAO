@@ -12,8 +12,6 @@ import excepciones.ErrorEditarComentarioException;
 import excepciones.ErrorEliminarComentarioException;
 import excepciones.ErrorGuardarComentarioException;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
-import java.util.List;
 
 /**
  * Clase que realiza todas las operaciones de base de datos para la entidad 
@@ -56,6 +54,7 @@ public class ComentariosDAO implements IComentariosDAO {
      * @param id ide del comentario.
      * @return comentario consultado.
      */
+    @Override
     public Comentario consultarComentario(Long id){
         try {
             EntityManager em = this.conexion.crearConexion();
@@ -65,11 +64,6 @@ public class ComentariosDAO implements IComentariosDAO {
         } catch (Exception ex) {
             throw new ErrorGuardarComentarioException("No se pudo encontrar el comentario");
         }
-    }
-
-    @Override
-    public List<Comentario> consultarComentarios(Long idPublicacion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -83,8 +77,6 @@ public class ComentariosDAO implements IComentariosDAO {
             System.out.println("Llegó a eliminar comentario");
             EntityManager em = this.conexion.crearConexion();
             em.getTransaction().begin();
-//            Comentario instancia= em.find(Comentario.class, comentario.getId());
-//            em.remove(instancia);
             Comentario instancia= em.find(Comentario.class, comentario.getId());
             em.createQuery("DELETE FROM Comentario WHERE id= :id").setParameter("id", instancia.getId()).executeUpdate();
             em.getTransaction().commit();

@@ -51,7 +51,7 @@ public class MensajesDAO implements IMensajesDAO {
     }
     /**
      * Método utilizado para consultar un mensaje.
-     * @param idNotificacion id del mensaje.
+     * @param idMensaje id del mensaje.
      * @return mensaje consultado.
      */
     @Override

@@ -22,6 +22,9 @@ public class FabricaDatosPersistencia {
      * @return FachadaDatosPersistencia.
      */
     public static IDatosPersistencia crearFachadaDatos(){
-        return new FachadaDatosPersistencia();
+        if(datosPersistencia == null){
+            datosPersistencia = new FachadaDatosPersistencia();
+        }
+        return datosPersistencia;
     }
 }

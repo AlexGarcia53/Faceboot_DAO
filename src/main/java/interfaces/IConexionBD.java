@@ -14,7 +14,11 @@ import jakarta.persistence.EntityManager;
  * @author Equipo Broker.
  */
 public interface IConexionBD {
-
+    /**
+     * Método que crea un objeto EntityManager.
+     * @return EntityManager.
+     * @throws IllegalStateException Excepción a lanzar.
+     */
     public EntityManager crearConexion() throws IllegalStateException;
 
 }

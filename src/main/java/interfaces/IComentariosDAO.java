@@ -14,8 +14,28 @@ import java.util.List;
  * @author Equipo Broker.
  */
 public interface IComentariosDAO {
+    /**
+     * Método utilizado para registrar un comentario.
+     * @param comentario comentario a registrar.
+     * @return comentario registrado.
+     */
     public Comentario registrar(Comentario comentario);
+    /**
+     * Método utilizado para editar un comentario.
+     * @param comentario comentario a editar.
+     * @return comentario editado.
+     */
     public Comentario editar(Comentario comentario);
-    public List<Comentario> consultarComentarios(Long idPublicacion);
+    /**
+     * Método utilizado para eliminar un comentario.
+     * @param comentario comentario a eliminar.
+     * @return comentario eliminado.
+     */
     public Comentario eliminar(Comentario comentario);
+    /**
+     * Método para consultar comentario.
+     * @param id ide del comentario.
+     * @return comentario consultado.
+     */
+    public Comentario consultarComentario(Long id);
 }

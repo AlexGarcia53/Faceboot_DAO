@@ -80,11 +80,6 @@ public class PublicacionesDAO implements IPublicacionesDAO {
         }
     }
 
-    @Override
-    public Publicacion consultarPorHashtag(Hashtag hashtag) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * Método utilizado para eliminar una publicación.
      *

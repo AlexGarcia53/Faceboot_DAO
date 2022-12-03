@@ -15,11 +15,44 @@ import java.util.List;
  * @author Equipo Broker.
  */
 public interface IPublicacionesDAO {
+
+    /**
+     * Método utilizado para registrar una publicación.
+     *
+     * @param publicacion publicación a registrar.
+     * @return publicación registrada.
+     */
     public Publicacion registrar(Publicacion publicacion);
+
+    /**
+     * Método utilizado para editar una publicación.
+     *
+     * @param publicacion publicación a editar.
+     * @return publicacion editada.
+     */
     public Publicacion editar(Publicacion publicacion);
+
+    /**
+     * Método utilizado para consultar una publicación.
+     *
+     * @param publicacion publicación a consultar.
+     * @return publicación consultada.
+     */
     public Publicacion consultarPublicacion(Long id);
-    public Publicacion consultarPorHashtag(Hashtag hashtag);
+
+    /**
+     * Método utilizado para consultar publicaciones.
+     *
+     * @return lista de publicaciones.
+     */
     public List<Publicacion> consultarPublicaciones();
+
+    /**
+     * Método utilizado para eliminar una publicación.
+     *
+     * @param publicacion publicación a eliminar.
+     * @return publicacion eliminada.
+     */
     public Publicacion eliminar(Publicacion publicacion);
-    
+
 }

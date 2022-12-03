@@ -13,6 +13,20 @@ import dominio.Mensaje;
  * @author Equipo Broker.
  */
 public interface IMensajesDAO {
-     public Mensaje registrar(Mensaje mensaje);
-     public Mensaje consultar( Long idMensaje);
+
+    /**
+     * Método para enviar un mensaje.
+     *
+     * @param mensaje mensaje a enviar.
+     * @return mensaje que fue enviado.
+     */
+    public Mensaje registrar(Mensaje mensaje);
+
+    /**
+     * Método utilizado para consultar un mensaje.
+     *
+     * @param idNotificacion id del mensaje.
+     * @return mensaje consultado.
+     */
+    public Mensaje consultar(Long idMensaje);
 }
